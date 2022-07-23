@@ -14,30 +14,41 @@ int main(void){
         cin >> s;
         alp.push_back(make_pair(-s.size(), s));
     }
+
     sort(alp.begin(), alp.end());
 
-    unordered_map <char, int> umap;
-    char nums[10];
-    for(int j = 0; j < 10 ; j++){
-        for(int i = 0; i < N; i++){
-            string cur = alp[i].second;
-            if(j >= cur.length())
-                continue;
-
-            if(umap.find(cur[j]) == umap.end()){
-                int idx = 9;
-                for(; (int) nums[idx] != 0; idx--);
-                nums[idx] = cur[j];
-                umap[cur[j]] = idx;
-                cur[j] = '0' + idx;
-            }else
-                cur[j] = '0' + umap[cur[j]];
+    vector <string> strs;
+    for(int i = 0; i < N; i++){
+        string s (8, '0');
+        strs.push_back(s);
+        int max_size = alp[i].second.size();
+        for(int j = 0; j < max_size; j++){
+            strs[i][8 - max_size + j] = alp[i].second[j];
         }
     }
-    int ans =0;
-    for(int i = 0; i < N; i++){
-        ans += stoi(alp[i].second);
+
+    unordered_map <char, int> chars_mapping;
+    int n = 9;
+
+    for(int col = 0 ; col < 8; col++){
+        for(int row = 0; row < N; row++){
+            if (strs[row][col] == '0')
+                continue;
+            else 
+                if (chars_mapping.find(strs[row][col]) == chars_mapping.end()){
+                    chars_mapping[strs[row][col]] = n;
+                    strs[row][col] = '0' + (n--);
+                }
+                else{
+                    strs[row][col] = '0' + chars_mapping[strs[row][col]];
+                }
+        }
     }
+    int ans= 0;
+    for(int i = 0; i < N; i++){
+        ans += stoi(strs[i]);
+    }
+
     cout << ans << endl;
 
     return 0;
