@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <queue>
 #include <algorithm>
 
 using namespace std;
@@ -7,25 +7,29 @@ using namespace std;
 int main(void){
     int N, K;
     cin >> N >> K;
-    vector < pair <int, int> > jewl;
+    priority_queue < pair <int, int> > jewls;
     for(int i = 0 ; i < N; i++){
         int w, v;
         scanf("%d %d", &w, &v);
-        jewl.push_back(make_pair(-v, w));
+        jewls.push(make_pair(v, w));
     }
-    vector <int> bags_capacity;
+    priority_queue <int> bags;
     for(int i = 0; i < K; i++){
         int c;
         scanf("%d" , &c);
-        bags_capacity.push_back(c);
+        bags.push(c);
     }
-    sort(jewl.begin(), jewl.end());
-    sort(bags_capacity.begin(), bags_capacity.end());
-
+    int maxCap = bags.top();
     
-
-
-
+    int ans = 0;
+    while(!bags.empty()){
+        if(bags.top() >= jewls.top().second){
+            ans += jewls.top().first;
+            bags.pop();
+        }
+        jewls.pop();
+    }
+    cout << ans << endl;
 
     return 0;
 }
