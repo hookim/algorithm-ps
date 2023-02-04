@@ -1,0 +1,27 @@
+{
+  "files.associations": {
+    "ios": "cpp",
+    "__bit_reference": "cpp",
+    "deque": "cpp",
+    "iostream": "cpp",
+    "vector": "cpp",
+    "queue": "cpp",
+    "__locale": "cpp",
+    "atomic": "cpp",
+    "bitset": "cpp",
+    "compare": "cpp",
+    "exception": "cpp",
+    "utility": "cpp",
+    "istream": "cpp",
+    "locale": "cpp",
+    "memory": "cpp",
+    "mutex": "cpp",
+    "ostream": "cpp",
+    "string": "cpp",
+    "system_error": "cpp",
+    "type_traits": "cpp",
+    "__functional_base": "cpp",
+    "iterator": "cpp",
+    "stdexcept": "cpp"
+  }
+}
