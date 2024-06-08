@@ -8,15 +8,15 @@ long long N, a;
 vector<int> arr, lis;
 
 void searchAndReplace(int x){
-    int b = 0, e = lis.size()-1, m = (b+e)/2;
+    int b = 0, e = lis.size(), m = (b+e)/2;
     while(b < e){
-        m = (b+e) / 2;
+        m = b + (e-b) / 2;
 
-        if(lis[m] >= x){
-            e = m;
+        if(lis[m] < x){
+            b = m+1;
         }
         else{
-            b = m+1;
+            e = m;
         }
 
     }
