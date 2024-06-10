@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int N, K;
+int N, K, ans;
 int cnt[MAX];
 // class Compare{public: bool operator()(const pair<int, int> &a, const pair<int, int> &b){return a.second < b.second;}};
 
@@ -19,6 +19,11 @@ void solve(){
         int cur = q.front().first;
         int curT = q.front().second;
         q.pop();
+
+        if(cur == K){
+            ans = curT;
+            return;
+        }
 
         if(cur * 2 < MAX && cnt[cur * 2] > curT){
             cnt[cur * 2] = curT;
@@ -45,7 +50,7 @@ int main (void){
 
     solve();
 
-    cout << cnt[K] << "\n";
+    cout << ans << "\n";
 
     return 0;
 }
