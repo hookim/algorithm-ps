@@ -27,8 +27,8 @@ int main (void){
         else{
             L.push(a);
         }
-
-        if(R.size() - L.size() > 1){
+        
+        while(R.size() > 1 + L.size()){
             L.push(R.top());
             R.pop();
         }
